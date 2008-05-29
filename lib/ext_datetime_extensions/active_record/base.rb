@@ -28,12 +28,12 @@ module ExtDatetimeExtensions
           opts.each do |datetime_field|
             src = <<-end_eval
             def #{datetime_field}_date
-              self.#{datetime_field} = Time.now if self.#{datetime_field}.nil?
+              return '' if self.#{datetime_field}.nil?
               "#\{padded_datetime_field(self.#{datetime_field}.day)}/#\{padded_datetime_field(self.#{datetime_field}.month)}/#\{self.#{datetime_field}.year}"
             end
             
             def #{datetime_field}_time
-              self.#{datetime_field} = Time.now if self.#{datetime_field}.nil?
+              return ''  if self.#{datetime_field}.nil?
               "#\{padded_datetime_field(self.#{datetime_field}.hour)}:#\{padded_datetime_field(self.#{datetime_field}.min)}"
             end
             
