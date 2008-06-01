@@ -53,7 +53,7 @@ class RspecExtScaffoldGenerator < Rails::Generator::NamedBase
       m.directory('spec/controllers/admin')
       m.directory('spec/models')
       
-      m.file("controllers/admin/crud_controller.rb", "controllers/admin/crud_controller.rb")
+      # m.file("controllers/admin/crud_controller.rb", "controllers/admin/crud_controller.rb")
             
       #views
       scaffold_views.each do |view|
@@ -70,7 +70,7 @@ class RspecExtScaffoldGenerator < Rails::Generator::NamedBase
       
       # m.dependency 'rspec_model', [name] + @args, :collision => :skip
       
-      unless options[:skip_migration]
+      unless !options[:skip_migration]
         m.migration_template 'migrations/migration.rb', 'db/migrate', :assigns => {
           :migration_name => "Create#{class_name.pluralize.gsub(/::/, '')}"
         }, :migration_file_name => "create_#{file_path.gsub(/\//, '_').pluralize}"
