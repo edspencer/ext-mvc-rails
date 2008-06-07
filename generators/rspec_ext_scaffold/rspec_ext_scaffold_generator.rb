@@ -44,6 +44,7 @@ class RspecExtScaffoldGenerator < Rails::Generator::NamedBase
       # Controller, helper, views, and test directories.
       m.directory('app/models')
       m.directory('app/controllers')
+      m.directory("app/controllers/admin")
       m.directory('app/helpers')
       m.directory("#{js_dir}/views")
       m.directory("#{js_dir}/views/#{table_name}")

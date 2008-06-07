@@ -1,0 +1,273 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin:0;padding:0;}
+table {	border-collapse:collapse; border-spacing:0;}
+fieldset,img { 	border:0;}
+address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;font-weight:normal;}
+ol,ul {	list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+q:before,q:after {content:'';}
+abbr,acronym { border:0;}
+
+#wrapper {
+  width: 980px;
+  margin: 10px auto;
+}
+
+#menu {
+  width: 150px;
+  float: left;
+}
+
+a {color: #01A3E4}
+a.subHeader {font-size: 80%; margin-bottom: 10px; display: block;}
+
+#content { margin-left: 160px;}
+#content h1 { font-size: 150%; margin-bottom: 5px;}
+#content p {margin-bottom: 10px;}
+
+form .formRow { padding: 2px 0;}
+form .formRow label {display: block; float: left; width: 150px; text-align: right; padding-right: 10px;}
+form .formRow input { width: 350px; border: 1px solid #ABC6DD;}
+form .formRow textarea { width: 650px; height: 120px; border: 1px solid #ABC6DD;}
+
+#notices {padding: 5px 0;}
+#notices p {color: green;}
+
+#errors { border: 2px solid red; padding: 10px;}
+#errors ul { list-style: disc inside;}
+form .fieldWithErrors input {border: 2px solid red;}
+form .fieldWithErrors textarea {border: 2px solid red;}
+
+table.wide {width: 99%;}
+table th {font-weight: bold;}
+table td {padding: 1px 0;}
+
+
+/* TREE CHECK NODE STYLES */
+
+/* tree checkbox, height/width needed b/c of IE spacing weirdly, breaks lines */
+input.l-tcb {height:13px;width:13px;margin-left:2px}
+
+/* fix scrolling issue with treeobj in a contentpanel 
+ * and loss of icons when a node is expanded
+*/
+.ext-ie .x-tree {	position:static !important;}
+
+/* END TREE CHECK NODE STYLES */
+
+
+/* IMAGE CHOOSER */
+
+.thumb-wrap {
+  float: left;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.thumb-wrap thumb img { margin: 0 auto;}
+.x-view-selected { background-color: #CAD9EC;}
+.x-view-over { border: 4px solid #CAD9EC; width: 112px; height:116px; padding-top: 6px;}
+.details { text-align: center;}
+.details img {padding: 5px 0;}
+.details .details-info {text-align: left; padding: 5px;}
+.details .details-info dt {font-weight: bold; display: block; padding: 5px 0 3px 0;}
+
+/* END IMAGE CHOOSER */
+
+/* IMAGE COMBO */
+
+.categoryImage {
+  height: 110px;
+}
+
+.categoryImage img {
+  float: left;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.categoryImage p {
+  font-weight: bold;
+}
+
+/* END IMAGE COMBO */
+
+
+/* FROM ORGANIC: */
+
+#msg-div {
+  position:absolute;
+  left:35%;
+  top:10px;
+  width:250px;
+  z-index:20000;
+}
+
+.msg .x-box-mc {
+  font-size:14px;
+}
+
+#header {
+  background: #DFE8F6 url(/images/background_admin_header.gif) repeat-x;
+  height: 50px;
+}
+
+#header h1 {
+  font-size: 29px;
+  color: #3a649e;
+  font-family: arial;
+  font-weight: normal;
+  padding: 6px 0 0 11px;
+}
+
+#header p {
+  float: right;
+  margin: 0;
+  position: absolute;
+  top: 5px;
+  right: 120px;
+  color: #3a649e;
+  font-size: 12px;
+}
+
+.logout {
+  float: right;
+  margin: 14px 10px 0 0;
+}
+
+.menu-panel { margin-bottom: 10px;}
+.menu-panel .x-panel-body { padding: 1px; }
+
+#menu { background-color: #DFE8F6; padding: 5px 0 0 5px;}
+
+#menu {
+  width: 95%;
+}
+
+#menu ul li a {
+  padding: 3px 25px 10px 28px;
+  text-decoration: none;
+  display: block;
+  color: #426198;
+}
+
+#menu ul li a:hover {
+  text-decoration: underline;
+}
+
+li a#Dashboard_Index { background: transparent url(/images/icons/dashboard.png) no-repeat 2px 2px;}
+li a#Video_Index { background: transparent url(/images/icons/film.png) no-repeat 2px 2px;}
+
+li a#Advertisement_Index { background: transparent url(/images/icons/advertisement.png) no-repeat 2px 2px;}
+li a#Contacts_Index { background: transparent url(/images/icons/feedback.png) no-repeat 2px 2px;}
+li a#Pages_Index { background: transparent url(/images/icons/page.png) no-repeat 2px 2px;}
+li a#Products_Index { background: transparent url(/images/icons/advertisement.png) no-repeat 2px 2px;}
+li a#Orders_Index { background: transparent url(/images/icons/advertisement.png) no-repeat 2px 2px;}
+li a#Categories_Index { background: transparent url(/images/icons/category.png) no-repeat 2px 2px;}
+li a#Assets_Index { background: transparent url(/images/icons/image.png) no-repeat 2px 2px;}
+li a#Users_Index { background: transparent url(/images/icons/administrator.png) no-repeat 2px 2px;}
+
+.add { background-image: url(/images/icons/add.png) !important;}
+.edit { background-image: url(/images/icons/edit.png) !important;}
+.quick_edit { background-image: url(/images/icons/quick_edit.png) !important;}
+.delete { background-image: url(/images/icons/delete.png) !important;}
+.save { background-image: url(/images/icons/tick.png) !important;}
+.cancel { background-image: url(/images/icons/delete.png) !important;}
+.list { background: transparent url(/images/icons/list.png) no-repeat 2px 2px;}
+.file_new {background: transparent url(/images/icons/image_add.png) no-repeat 0px 0px !important;}
+.grid_list { background: transparent url(/images/icons/list.png) no-repeat 0px 4px !important;}
+.form_new {background: transparent url(/images/icons/application_add.png) no-repeat 0px 4px !important;}
+.form_user_new {background: transparent url(/images/icons/user_add.png) no-repeat 0px 4px !important;}
+.form_user_edit {background: transparent url(/images/icons/user_edit.png) no-repeat 0px 4px !important;}
+.form_page_new {background: transparent url(/images/icons/page_add.png) no-repeat 0px 4px !important;}
+.form_page_edit {background: transparent url(/images/icons/page_edit.png) no-repeat 0px 4px !important;}
+.form_video_new {background: transparent url(/images/icons/film_add.png) no-repeat 0px 4px !important;}
+.form_video_edit {background: transparent url(/images/icons/film_edit.png) no-repeat 0px 4px !important;}
+.form_asset_new {background: transparent url(/images/icons/image_add.png) no-repeat 0px 4px !important;}
+.form_asset_edit {background: transparent url(/images/icons/image_edit.png) no-repeat 0px 4px !important;}
+.form_feedback {background: transparent url(/images/icons/feedback.png) no-repeat 0px 4px !important;}
+.dashboard { background: transparent url(/images/icons/dashboard.png) no-repeat 0px 4px !important;}
+
+.suppliers { background-image: url(/images/icons/list.png) !important;}
+
+/* DASHBOARD STYLES */
+
+#dashboard {
+  background-color: #DFE8F7;
+  padding: 20px;
+}
+
+#dashboard div {
+  height: 160px;
+}
+
+#dashboard fieldset {
+  padding: 15px 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+#dashboard fieldset legend {
+  font-weight: bold;
+  color: #3A619A;
+}
+
+#dashboard fieldset.top {
+  width: 46%;
+  display: block;
+  margin-right: 2%;
+  text-align: center;
+}
+
+#dashboard fieldset.videos {
+  float: left;
+}
+
+#dashboard fieldset.stats {
+  clear: both;
+  width: 97%;
+}
+
+#dashboard p {
+  color: #3A619A;
+  font-weight: bold;
+  font-size: 11px;
+  margin: 10px 0;
+}
+
+#dashboard table {
+  width: 99%;
+  padding: 0 10%;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#dashboard table th {
+  font-weight: bold;
+  color: #666;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+#dashboard table td {
+  padding: 1px 0 0 0;
+}
+
+/* END DASHBOARD STYLES */
+
+/* PAGE CRUD STYLES */
+
+#pageExtraTags dl { font-size: 11px;}
+#pageExtraTags dl dt { color: #888; font-weight: bold; padding-bottom: 2px;}
+#pageExtraTags dl dd { padding-bottom: 12px; font-family: monospace;}
+
+
+/* END PAGE CRUD STYLES */
+
+.x-grid3-hd-row td.ux-filtered-column {   
+  font-style: italic;  
+  font-weight: bold;
+}		
