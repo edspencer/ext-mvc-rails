@@ -8,7 +8,7 @@
     })
   );
   
-  <%= class_name %>.loadFormWithId(config.ids[0], form);
+  <%= class_name %>.loadFormWithRecord(config.records[0], form);
   
   return form;
-}
+};
