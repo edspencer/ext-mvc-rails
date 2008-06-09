@@ -52,9 +52,7 @@ module ExtTreeExtensions
           @tree_node.move_to_child_of_with_index params[:parent].to_i, params[:index]
           
           respond_to do |format|
-            format.html
-            format.xml
-            format.ext_json {render :text => "{success: true}"}
+            format.ext_json { render :json => {:success => true}}
           end
         end
         
@@ -65,9 +63,9 @@ module ExtTreeExtensions
         rescue ActiveRecord::RecordNotFound => e
         
           respond_to do |format|
-            format.html { render :text => "The tree node could not be found"}
-            format.xml  { render :text => '', :status => :not_found }
-            format.ext  { render :text => "{success: false}"}
+            format.html     { render :text => "The tree node could not be found"}
+            format.xml      { render :text => '', :status => :not_found }
+            format.ext_json { render :text => "{success: false}"}
           end
         end
         

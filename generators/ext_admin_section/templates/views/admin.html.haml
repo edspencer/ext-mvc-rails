@@ -1,0 +1,18 @@
+!!! Strict
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    = stylesheet_link_tag 'ext-all', 'admin/layout', :cache => 'admin_stylesheets'
+    %title Administration Section
+    = javascript_include_tag :ext, :ext_extensions, :ext_grid_filter, :ext_mvc, 'admin', :initializers, :helpers, :controllers, :models, :views, :cache => 'admin_mvc'
+    = yield :head
+  %body
+    #header
+      %h1 Administration_section
+      %p= current_user.email rescue ''
+    #menu
+      %ul
+        %li= link_to 'Dashboard',            '#', :id => 'Dashboard_Index'
+<%- args.collect {|a| a.pluralize.gsub("_", " ").titleize}.each do |controller| -%>
+        %li= link_to '<%= controller %>',            '#', :id => '<%= controller.gsub(" ", "") %>_Index'<%- end -%>
+    = yield

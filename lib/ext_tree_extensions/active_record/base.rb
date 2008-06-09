@@ -19,19 +19,19 @@ module ExtTreeExtensions
         def build_tree treenode, opts = {}
           node = {:id => treenode.id, :text => treenode.to_s}
           
+          node[:expanded] = true
+          node[:leaf] = false
+                      
           if treenode.children.empty?
-            # node[:expanded] = false
-            # node[:leaf] = true
+            node[:children] = []
+            node[:iconCls]  = 'page'
           else
-            node[:expanded] = true
             node[:children] = treenode.children.collect {|c| build_tree(c, opts)}
-            node[:leaf] = false
           end
                     
           if opts[:checked_tree] #&& opts[:checked_ids]
             node[:checked] = opts[:checked_ids].include?(treenode.id) ? true : false
             node[:depth] = treenode.ancestors.size
-            # node[:expanded] = true
           end
           
           node

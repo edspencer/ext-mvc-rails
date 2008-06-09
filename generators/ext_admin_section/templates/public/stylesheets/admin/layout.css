@@ -1,0 +1,164 @@
+#msg-div {
+  position:absolute;
+  left:35%;
+  top:10px;
+  width:250px;
+  z-index:20000;
+}
+
+.msg .x-box-mc {
+  font-size:14px;
+}
+
+#header {
+  background: #DFE8F6 url(/images/background_admin_header.gif) repeat-x;
+  height: 50px;
+}
+
+#header h1 {
+  font-size: 29px;
+  color: #3a649e;
+  font-family: arial;
+  font-weight: normal;
+  padding: 6px 0 0 11px;
+}
+
+#header p {
+  float: right;
+  margin: 0;
+  position: absolute;
+  top: 5px;
+  right: 120px;
+  color: #3a649e;
+  font-size: 12px;
+}
+
+.logout {
+  float: right;
+  margin: 14px 10px 0 0;
+}
+
+.menu-panel { margin-bottom: 10px;}
+.menu-panel .x-panel-body { padding: 1px; }
+
+#menu { background-color: #DFE8F6; padding: 5px 0 0 5px;}
+
+#menu ul li a {
+  padding: 3px 25px 10px 28px;
+  text-decoration: none;
+  display: block;
+  color: #426198;
+}
+
+#menu ul li a:hover {
+  text-decoration: underline;
+}
+
+li a#Dashboard_Index      { background: transparent url(/images/icons/dashboard.png) no-repeat 2px 2px;}
+li a#Videos_Index         { background: transparent url(/images/icons/film.png) no-repeat 2px 2px;}
+li a#Images_Index         { background: transparent url(/images/icons/galleries.png) no-repeat 2px 2px;}
+li a#Advertisements_Index { background: transparent url(/images/icons/advertisement.png) no-repeat 2px 2px;}
+li a#Feedbacks_Index      { background: transparent url(/images/icons/feedback.png) no-repeat 2px 2px;}
+li a#Schedules_Index      { background: transparent url(/images/icons/clock.png) no-repeat 2px 2px;}
+li a#Pages_Index          { background: transparent url(/images/icons/page.png) no-repeat 2px 2px;}
+li a#Genres_Index         { background: transparent url(/images/icons/category.png) no-repeat 2px 2px;}
+li a#Categories_Index     { background: transparent url(/images/icons/category.png) no-repeat 2px 2px;}
+li a#Suppliers_Index      { background: transparent url(/images/icons/supplier.png) no-repeat 2px 2px;}
+li a#Users_Index          { background: transparent url(/images/icons/administrator.png) no-repeat 2px 2px;}
+
+.add             { background-image: url(/images/icons/add.png) !important;}
+.edit            { background-image: url(/images/icons/edit.png) !important;}
+.quick_edit      { background-image: url(/images/icons/quick_edit.png) !important;}
+.delete          { background-image: url(/images/icons/delete.png) !important;}
+.save            { background-image: url(/images/icons/tick.png) !important;}
+.cancel          { background-image: url(/images/icons/delete.png) !important;}
+.list            { background: transparent url(/images/icons/list.png) no-repeat 2px 2px;}
+.grid_list       { background: transparent url(/images/icons/list.png) no-repeat 0px 4px !important;}
+.picture_go      { background: transparent url(/images/icons/picture_go.png) no-repeat 0px 4px !important;}
+.play            { background: transparent url(/images/icons/play.png) no-repeat 0px 4px !important;}
+.form_new        { background: transparent url(/images/icons/application_add.png) no-repeat 0px 4px !important;}
+.form_user_new   { background: transparent url(/images/icons/user_add.png) no-repeat 0px 4px !important;}
+.form_user_edit  { background: transparent url(/images/icons/user_edit.png) no-repeat 0px 4px !important;}
+.form_page_new   { background: transparent url(/images/icons/page_add.png) no-repeat 0px 4px !important;}
+.form_page_edit  { background: transparent url(/images/icons/page_edit.png) no-repeat 0px 4px !important;}
+.form_video_new  { background: transparent url(/images/icons/film_add.png) no-repeat 0px 4px !important;}
+.form_video_edit { background: transparent url(/images/icons/film_edit.png) no-repeat 0px 4px !important;}
+.form_feedback   { background: transparent url(/images/icons/feedback.png) no-repeat 0px 4px !important;}
+.dashboard       { background: transparent url(/images/icons/dashboard.png) no-repeat 0px 4px !important;}
+
+.suppliers { background-image: url(/images/icons/list.png) !important;}
+
+/* DASHBOARD STYLES */
+
+#dashboard {
+  background-color: #DFE8F7;
+  padding: 20px;
+}
+
+#dashboard div {
+  height: 160px;
+}
+
+#dashboard fieldset {
+  padding: 15px 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+#dashboard fieldset legend {
+  font-weight: bold;
+  color: #3A619A;
+}
+
+#dashboard fieldset.top {
+  width: 46%;
+  display: block;
+  margin-right: 2%;
+  text-align: center;
+}
+
+#dashboard fieldset.videos {
+  float: left;
+}
+
+#dashboard fieldset.stats {
+  clear: both;
+  width: 97%;
+}
+
+#dashboard p {
+  color: #3A619A;
+  font-weight: bold;
+  font-size: 11px;
+  margin: 10px 0;
+}
+
+#dashboard table {
+  width: 99%;
+  padding: 0 10%;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#dashboard fieldset.stats table {
+  margin-top: 10px;
+}
+
+#dashboard table th {
+  font-weight: bold;
+  color: #666;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+#dashboard table td {
+  padding: 1px 0 0 0;
+}
+
+/* END DASHBOARD STYLES */
+
+.x-grid3-hd-row td.ux-filtered-column {   
+  font-style: italic;  
+  font-weight: bold;
+}		
