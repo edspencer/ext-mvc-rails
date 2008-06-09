@@ -1,14 +1,9 @@
-var DashboardController = {
-  viewIndex: function() {
-    view = new DashboardIndexPanel();
-    this.displayPanel(view);
-  }
+DashboardController = function(config) {
+  DashboardController.superclass.constructor.call(this, config);
 };
-Ext.apply(DashboardController, ApplicationController);
 
-// var DashboardController = Ext.apply(ApplicationController, {}, {
-//   viewIndex: function() {
-//     view = new DashboardIndexPanel();
-//     this.displayPanel(view);
-//   }
-// });
+Ext.extend(DashboardController, ApplicationController, {
+  viewIndex: function() {
+    this.showPanel(new DashboardIndexPanel());
+  }
+});
