@@ -28,28 +28,32 @@ module ExtDatetimeExtensions
           opts.each do |datetime_field|
             src = <<-end_eval
             def #{datetime_field}_date
-              return '' if self.#{datetime_field}.nil?
+              return '' if self.#{datetime_field}.nil? || self.#{datetime_field}.blank?
               "#\{padded_datetime_field(self.#{datetime_field}.day)}/#\{padded_datetime_field(self.#{datetime_field}.month)}/#\{self.#{datetime_field}.year}"
             end
             
             def #{datetime_field}_time
-              return ''  if self.#{datetime_field}.nil?
+              return ''  if self.#{datetime_field}.nil? || self.#{datetime_field}.blank?
               "#\{padded_datetime_field(self.#{datetime_field}.hour)}:#\{padded_datetime_field(self.#{datetime_field}.min)}"
             end
             
             #sets the datefield date components based on a string such as "DD/MM/YYYY"
             def #{datetime_field}_date= datestring
+              return if datestring.nil? || datestring.empty? || datestring.blank?
+              
               day, month, year = datestring.split("/")
-              self.#{datetime_field} = Time.now if self.#{datetime_field}.nil?
+              self.#{datetime_field} = Time.now if self.#{datetime_field}.nil? || self.#{datetime_field}.blank?
               self.#{datetime_field} = Time.mktime(year, month, day, self.#{datetime_field}.hour, self.#{datetime_field}.min, self.#{datetime_field}.sec)
             end
             
             #sets the datefield date components based on a string such as HH::mm
             def #{datetime_field}_time= timestring
+              return if timestring.nil? || timestring.empty? || datestring.blank?
+              
               hour, min, sec = timestring.split(":")
               sec = 0 if sec.nil?
               
-              self.#{datetime_field} = Time.now if self.#{datetime_field}.nil?
+              self.#{datetime_field} = Time.now if self.#{datetime_field}.nil? || self.#{datetime_field}.blank?
               self.#{datetime_field} = Time.mktime(self.#{datetime_field}.year, self.#{datetime_field}.month, self.#{datetime_field}.day, hour, min, sec)
             end
   
