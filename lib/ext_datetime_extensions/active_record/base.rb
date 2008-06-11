@@ -48,7 +48,7 @@ module ExtDatetimeExtensions
             
             #sets the datefield date components based on a string such as HH::mm
             def #{datetime_field}_time= timestring
-              return if timestring.nil? || timestring.empty? || datestring.blank?
+              return if timestring.nil? || timestring.empty? || timestring.blank?
               
               hour, min, sec = timestring.split(":")
               sec = 0 if sec.nil?
