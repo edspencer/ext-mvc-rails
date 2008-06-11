@@ -33,8 +33,8 @@ module ExtDatetimeExtensions
             end
             
             def #{datetime_field}_time
-              return ''  if self.#{datetime_field}.nil? || self.#{datetime_field}.blank?
-              "#\{padded_datetime_field(self.#{datetime_field}.hour)}:#\{padded_datetime_field(self.#{datetime_field}.min)}"
+              return ''  if self.#{datetime_field}.nil? || self.#{datetime_field}.blank?              
+              "#\{self.#{datetime_field}.strftime(\"%H:%M %p\")}"
             end
             
             #sets the datefield date components based on a string such as "DD/MM/YYYY"
