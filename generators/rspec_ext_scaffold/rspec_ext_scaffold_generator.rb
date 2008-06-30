@@ -12,7 +12,8 @@ class RspecExtScaffoldGenerator < Rails::Generator::NamedBase
                 :controller_class_name,
                 :controller_underscore_name,
                 :controller_singular_name,
-                :controller_plural_name
+                :controller_plural_name,
+                :namespace
   alias_method  :controller_file_name,  :controller_underscore_name
   alias_method  :controller_table_name, :controller_plural_name
 
@@ -30,14 +31,19 @@ class RspecExtScaffoldGenerator < Rails::Generator::NamedBase
       @controller_class_name = "#{@controller_class_nesting}::#{@controller_class_name_without_nesting}"
     end
     
+    # shift the first argument off the @args as this should be the EXT-MVC namespace for this application
+    @namespace = @args.shift
+    
+    puts @args.class
+    
     @field_collection = FieldCollection.new(@args)
   end
   
   def manifest 
     record do |m|
       # Check for class naming collisions.
-      m.class_collisions(controller_class_path, "#{controller_class_name}Controller", "#{controller_class_name}Helper")
-      m.class_collisions(class_path, "#{class_name}")
+      # m.class_collisions(controller_class_path, "#{controller_class_name}Controller", "#{controller_class_name}Helper")
+      # m.class_collisions(class_path, "#{class_name}")
       
       js_dir = "public/javascripts"
 

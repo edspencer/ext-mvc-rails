@@ -1,10 +1,10 @@
-<%= controller_class_name %>Controller = Ext.extend(CrudController, {
+<%= namespace %>.controllers.<%= controller_class_name %>Controller = Ext.extend(CrudController, {
   constructor: function(config) {
-    <%= controller_class_name %>Controller.superclass.constructor.call(this, {
-      model      : <%= class_name %>, 
-      indexPanel : <%= class_name %>IndexPanel,
-      editPanel  : <%= class_name %>EditPanel,
-      newPanel   : <%= class_name %>NewPanel
+    <%= namespace %>.controllers.<%= controller_class_name %>Controller.superclass.constructor.call(this, {
+      model      : <%= namespace %>.models.<%= class_name %>, 
+      indexPanel : <%= namespace %>.views.<%= table_name %>.Index,
+      editPanel  : <%= namespace %>.views.<%= table_name %>.Edit,
+      newPanel   : <%= namespace %>.views.<%= table_name %>.New
     });
   }
 });
