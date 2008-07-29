@@ -1,4 +1,4 @@
-<%= namespace %>.views.<%= file_name %>.FormFields = [
+<%= namespace %>.views.<%= class_name %>.FormFields = [
 <%- field_collection.fields.each do |f| -%><%-   if f.field_type == 'boolean' %>
   {
     xtype: '<%= f.ext_field_type %>',

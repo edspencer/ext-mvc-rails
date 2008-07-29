@@ -3,6 +3,7 @@ require 'ext_scaffold_core_extensions/array'
 require 'ext_tree_extensions/active_record/base'
 require 'ext_tree_extensions/action_controller/base'
 require 'ext_datetime_extensions/active_record/base'
+require 'routing/routes'
 
 ActiveRecord::Base.send(:include, ExtScaffoldCoreExtensions::ActiveRecord::Base)
 ActiveRecord::Base.send(:include, ExtTreeExtensions::ActiveRecord::Base)
