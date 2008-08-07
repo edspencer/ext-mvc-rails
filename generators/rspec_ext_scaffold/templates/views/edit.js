@@ -14,4 +14,4 @@
   <%= namespace %>.views.<%= class_name %>.Edit.superclass.constructor.call(this, config);
 };
 Ext.extend(<%= namespace %>.views.<%= class_name %>.Edit, Ext.ux.MVC.view.DefaultEditForm);
-Ext.reg('<%= file_name %>_edit}', <%= namespace %>.views.<%= class_name %>.Edit);
+Ext.reg('<%= file_name %>_edit', <%= namespace %>.views.<%= class_name %>.Edit);

@@ -9,7 +9,7 @@
   Ext.applyIf(config, {
     model: <%= namespace %>.models.<%= class_name %>,
     headings: [
-<%= field_collection.fields.collect {|f| "      { header: '#{f.field_name.humanize}', dataIndex: '#{f.field_name}', type: 'string', editor: new Ext.form.TextField({allowBlank: #{f.validates_presence ? 'false' : 'true'}})}"}.join(",\n") %>
+<%= field_collection.fields.collect {|f| "      { header: '#{f.field_name.humanize}', dataIndex: '#{f.field_name}', type: 'string'}"}.join(",\n") %>
     ]
   });
   

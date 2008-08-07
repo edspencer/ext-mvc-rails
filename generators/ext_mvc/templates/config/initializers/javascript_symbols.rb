@@ -27,17 +27,19 @@ ActionView::Helpers::AssetTagHelper.register_javascript_expansion :initializers 
 
 # EXT MVC EXPANSIONS
 
+base         = js_files_in_directory('ext-mvc')
 lib          = js_files_in_directory('ext-mvc/lib')
 initializers = js_files_in_directory('ext-mvc/initializers')
 helpers      = js_files_in_directory('ext-mvc/helpers')
-controllers  = ['ext-mvc/controller/application_controller', 'ext-mvc/controller/crud_controller']
+controllers  = ['ext-mvc/controller/base', 'ext-mvc/controller/crud_controller', 'ext-mvc/controller/singleton_controller']
 models       = js_files_in_directory('ext-mvc/model')
+views        = js_files_in_directory('ext-mvc/view')
 
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_mvc => lib + initializers + helpers + controllers + models
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_mvc => base + lib + initializers + helpers + controllers + models + views
 
 # EXT EXPANSIONS
 
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext => ['ext/adapter/ext/ext-base', 'ext/ext-all']
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext => ['ext/adapter/yui/yui-utilities.js', 'ext/adapter/yui/ext-yui-adapter.js', 'ext/ext-all']
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_extensions => ['ext/search-field', 
                                                                                       'ext/data-view-plugins',
                                                                                       'ext/renderers']
