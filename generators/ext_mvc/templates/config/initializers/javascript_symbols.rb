@@ -34,12 +34,14 @@ helpers      = js_files_in_directory('ext-mvc/helpers')
 controllers  = ['ext-mvc/controller/base', 'ext-mvc/controller/crud_controller', 'ext-mvc/controller/singleton_controller']
 models       = js_files_in_directory('ext-mvc/model')
 views        = js_files_in_directory('ext-mvc/view')
+view_dirs    = Dir.entries("#{Rails.root}/public/javascripts/ext-mvc/view").reject {|v| v =~ /\./}
+views       += view_dirs.collect {|v| js_files_in_directory("ext-mvc/view/#{v}")}.flatten
 
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_mvc => base + lib + initializers + helpers + controllers + models + views
 
 # EXT EXPANSIONS
 
-ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext => ['ext/adapter/yui/yui-utilities.js', 'ext/adapter/yui/ext-yui-adapter.js', 'ext/ext-all']
+ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext => ['ext/adapter/ext/ext-base.js', 'ext/ext-all']
 ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_extensions => ['ext/search-field', 
                                                                                       'ext/data-view-plugins',
                                                                                       'ext/renderers']
