@@ -4,12 +4,15 @@ require 'ext_tree_extensions/active_record/base'
 require 'ext_tree_extensions/action_controller/base'
 require 'ext_datetime_extensions/active_record/base'
 require 'routing/routes'
+require 'javascript_expansions'
 
 ActiveRecord::Base.send(:include, ExtScaffoldCoreExtensions::ActiveRecord::Base)
 ActiveRecord::Base.send(:include, ExtTreeExtensions::ActiveRecord::Base)
 ActiveRecord::Base.send(:include, ExtDatetimeExtensions::ActiveRecord::Base)
 ActionController::Base.send(:include, ExtTreeExtensions::ActionController::Base)
 Array.send(:include, ExtScaffoldCoreExtensions::Array)
+
+ExtMvcRails::JavascriptExpansions.register
 
 #Edge seemed to break this, required necessary libs by hand above instead
 # Load CoreExtensions

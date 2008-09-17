@@ -1,0 +1,17 @@
+!!! Strict
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    = stylesheet_link_tag 'ext-all', 'admin/desktop', 'admin/icons', :cache => 'admin_stylesheets'
+    %title Administration Section
+    = javascript_include_tag :ext, :ext_extensions, :ext_grid_filter, :ext_mvc, 'admin', :initializers, :helpers, :cache => 'admin_mvc'
+    = yield :head
+  %body
+    #x-desktop
+      %dl#x-shortcuts
+        %dt#grid-win-shortcut
+    
+    #ux-taskbar
+      #ux-taskbar-start
+      #ux-taskbuttons-panel
+      .x-clear
