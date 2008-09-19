@@ -37,7 +37,9 @@ module ExtMvcRails
       views        = js_files_in_directory('ext-mvc/view')
       view_dirs    = Dir.entries("#{Rails.root}/public/javascripts/ext-mvc/view").reject {|v| v =~ /\./}
       views       += view_dirs.collect {|v| js_files_in_directory("ext-mvc/view/#{v}")}.flatten
-      app_files    = js_files_in_directory('ext-mvc/app')
+      
+      #need to include lib before window here to make Tiny MCE editor windows work.  curses
+      app_files    = js_files_in_directory('ext-mvc/app') + js_files_in_directory('ext-mvc/app/lib') + js_files_in_directory('ext-mvc/app/window')
       
       ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_mvc => base + lib + desktop + initializers + helpers + controllers + models + views + app_files
     end
