@@ -73,18 +73,34 @@ module ExtMvcRails
       collection.select {|c| c.split(".").last == 'js'}.collect {|js| "#{dirname}/#{js.gsub(/.js$/, '')}"}
     end
     
+    #recursively finds all javascript files in the given directory and all its subdirectories
+    def self.recursive_js_files_in_directory dirname
+      files = []
+      files += js_files_in_directory(dirname)
+        
+      find_subdirectories("#{Rails.root}/public/javascripts/#{dirname}").each do |subdir|
+        files += recursive_js_files_in_directory("#{dirname}/#{subdir}").flatten
+      end
+      
+      return files.flatten
+    end
+    
     #returns an array of application names.  Applications must be installed under public/javascripts/apps
     def self.find_applications
-      Dir.entries("public/javascripts/apps").select {|d| File.directory?("public/javascripts/apps/#{d}") && !(d =~ /\./)}
+      find_subdirectories("public/javascripts/apps")
+    end
+    
+    def self.find_subdirectories(directory)
+      Dir.entries(directory).select {|d| File.directory?("#{directory}/#{d}") && !(d =~ /\./)}
     end
     
     #given an application directory, returns all files for that application in the correct order
     def self.find_application_files appname
       files  = js_files_in_directory("apps/#{appname}")
-      files += js_files_in_directory("apps/#{appname}/controllers") if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/controllers")
-      files += js_files_in_directory("apps/#{appname}/views")       if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/views")
-      files += js_files_in_directory("apps/#{appname}/models")      if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/models")
-      files += js_files_in_directory("apps/#{appname}/lib")         if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/lib")
+      files += js_files_in_directory("apps/#{appname}/controllers")     if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/controllers")
+      files += recursive_js_files_in_directory("apps/#{appname}/views") if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/views")
+      files += js_files_in_directory("apps/#{appname}/models")          if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/models")
+      files += js_files_in_directory("apps/#{appname}/lib")             if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/lib")
       
       files
     end
