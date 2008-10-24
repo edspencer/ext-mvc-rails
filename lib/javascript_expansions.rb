@@ -1,7 +1,10 @@
-require 'find'
+require "find"
 
 module ExtMvcRails
   class JavascriptExpansions
+    
+    @@basedir = "ext/ux/mvc"
+    
     def self.register
       register_ext
       register_ext_mvc
@@ -10,38 +13,24 @@ module ExtMvcRails
     end
     
     def self.register_ext
-      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext => ['ext/adapter/ext/ext-base.js', 'ext/ext-all-debug']
-      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_extensions => ['ext/search-field', 
-                                                                                            'ext/data-view-plugins',
-                                                                                            'ext/renderers']
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext => ["ext/adapter/ext/ext-base.js", "ext/ext-all-debug"]
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_extensions => ["ext/search-field", 
+                                                                                            "ext/data-view-plugins",
+                                                                                            "ext/renderers"]
                                                                                             
-      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_grid_filter => ['ext/ux/menu/EditableItem',
-                                                                                             'ext/ux/menu/RangeMenu',
-                                                                                             'ext/ux/grid/GridFilters',
-                                                                                             'ext/ux/grid/filter/Filter',
-                                                                                             'ext/ux/grid/filter/StringFilter',
-                                                                                             'ext/ux/grid/filter/DateFilter',
-                                                                                             'ext/ux/grid/filter/ListFilter',
-                                                                                             'ext/ux/grid/filter/NumericFilter',
-                                                                                             'ext/ux/grid/filter/BooleanFilter']
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_grid_filter => ["ext/ux/menu/EditableItem",
+                                                                                             "ext/ux/menu/RangeMenu",
+                                                                                             "ext/ux/grid/GridFilters",
+                                                                                             "ext/ux/grid/filter/Filter",
+                                                                                             "ext/ux/grid/filter/StringFilter",
+                                                                                             "ext/ux/grid/filter/DateFilter",
+                                                                                             "ext/ux/grid/filter/ListFilter",
+                                                                                             "ext/ux/grid/filter/NumericFilter",
+                                                                                             "ext/ux/grid/filter/BooleanFilter"]
     end
     
     def self.register_ext_mvc
-      base         = js_files_in_directory('ext-mvc')
-      lib          = js_files_in_directory('ext-mvc/lib')
-      desktop      = js_files_in_directory('ext-mvc/lib/LayoutManagers/Desktop')
-      initializers = js_files_in_directory('ext-mvc/initializers')
-      helpers      = js_files_in_directory('ext-mvc/helpers')
-      controllers  = ['ext-mvc/controller/base', 'ext-mvc/controller/crud_controller', 'ext-mvc/controller/singleton_controller']
-      models       = js_files_in_directory('ext-mvc/model')
-      views        = js_files_in_directory('ext-mvc/view')
-      view_dirs    = Dir.entries("#{Rails.root}/public/javascripts/ext-mvc/view").reject {|v| v =~ /\./}
-      views       += view_dirs.collect {|v| js_files_in_directory("ext-mvc/view/#{v}")}.flatten
-      
-      #need to include lib before window here to make Tiny MCE editor windows work.  curses
-      app_files    = js_files_in_directory('ext-mvc/app') + js_files_in_directory('ext-mvc/app/lib') + js_files_in_directory('ext-mvc/app/grid') + js_files_in_directory('ext-mvc/app/window')
-      
-      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_mvc => base + lib + desktop + initializers + helpers + controllers + models + views + app_files
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :ext_mvc => self.find_ext_mvc_files
     end
     
     #creates an expansion for each application, and an expansion for all applications.  e.g. if application UserManager exists
@@ -62,15 +51,33 @@ module ExtMvcRails
     end
     
     def self.register_initializers
-      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :plugins      => js_files_in_directory('plugins')
-      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :initializers => js_files_in_directory('initializers')
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :plugins      => js_files_in_directory("plugins")
+      ActionView::Helpers::AssetTagHelper.register_javascript_expansion :initializers => js_files_in_directory("initializers")
+    end
+    
+    def self.concatenate_and_minify
+      concatenated_filename = "public/javascripts/#{@@basedir}/ext-mvc-all.js"
+      
+      #remove old files, create blank ones again
+      if File.exists?(concatenated_filename)
+        File.delete(concatenated_filename)
+        puts "Deleted old file"
+      end
+      FileUtils.touch(concatenated_filename)
+      
+      file = File.open(concatenated_filename, 'w') do |f|
+        find_ext_mvc_files.each do |i|
+          f.puts(IO.read("public/javascripts/#{i}.js"))
+          f.puts("\n")
+        end
+      end
     end
     
     private
     # returns all files in the collection which end in .js, then strips the .js extension as these are not needed in the helper
     def self.js_files_in_directory dirname
       collection = Dir.entries("#{Rails.root}/public/javascripts/#{dirname}")
-      collection.select {|c| c.split(".").last == 'js'}.collect {|js| "#{dirname}/#{js.gsub(/.js$/, '')}"}
+      collection.select {|c| c.split(".").last == "js"}.collect {|js| "#{dirname}/#{js.gsub(/.js$/, '')}"}
     end
     
     #recursively finds all javascript files in the given directory and all its subdirectories
@@ -103,6 +110,24 @@ module ExtMvcRails
       files += js_files_in_directory("apps/#{appname}/lib")             if File.exists?("#{Rails.root}/public/javascripts/apps/#{appname}/lib")
       
       files
+    end
+    
+    def self.find_ext_mvc_files
+      base         = js_files_in_directory(@@basedir)
+      lib          = js_files_in_directory("#{@@basedir}/lib")
+      desktop      = js_files_in_directory("#{@@basedir}/lib/LayoutManagers/Desktop")
+      initializers = js_files_in_directory("#{@@basedir}/initializers")
+      helpers      = js_files_in_directory("#{@@basedir}/helpers")
+      controllers  = ["#{@@basedir}/controller/base", "#{@@basedir}/controller/crud_controller", "#{@@basedir}/controller/singleton_controller"]
+      models       = js_files_in_directory("#{@@basedir}/model")
+      views        = js_files_in_directory("#{@@basedir}/view")
+      view_dirs    = Dir.entries("#{Rails.root}/public/javascripts/#{@@basedir}/view").reject {|v| v =~ /\./}
+      views       += view_dirs.collect {|v| js_files_in_directory("#{@@basedir}/view/#{v}")}.flatten
+      
+      #need to include lib before window here to make Tiny MCE editor windows work.  curses
+      app_files    = js_files_in_directory("#{@@basedir}/app") + js_files_in_directory("#{@@basedir}/app/lib") + js_files_in_directory("#{@@basedir}/app/grid") + js_files_in_directory("#{@@basedir}/app/window")
+      
+      return [base + lib + desktop + initializers + helpers + controllers + models + views + app_files].flatten
     end
   end
 end
