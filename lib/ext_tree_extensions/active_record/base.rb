@@ -31,7 +31,7 @@ module ExtTreeExtensions
                     
           if opts[:checked_tree] #&& opts[:checked_ids]
             node[:checked] = opts[:checked_ids].include?(treenode.id) ? true : false
-            node[:depth] = treenode.ancestors.size rescue = 0 #FIXME: this is horrible, and is only here because some things screw up if you make a model a tree (e.g. add lft, rgt and parent_id) after some records have already been added (gives an SQL error)
+            node[:depth] = treenode.ancestors.size rescue 0 #FIXME: this is horrible, and is only here because some things screw up if you make a model a tree (e.g. add lft, rgt and parent_id) after some records have already been added (gives an SQL error)
           end
           
           node
